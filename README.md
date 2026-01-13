@@ -32,11 +32,11 @@ It is intended as a starter template, not a real portfolio.
 ### 1. Install dependencies
 ```bash
 npm install  
-
+```
 ### 2. Start the dev server
 ```bash
 npm run dev  
-
+```
 
 The site will be available at:
 
@@ -141,13 +141,13 @@ Build the site:
 
 ```bash
 npm run build  
-
+```
 
 Preview locally:
 
 ```bash
 npm run preview  
-
+```
 ---
 
 ## 🔐 Environment Variables
