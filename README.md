@@ -31,11 +31,11 @@ It is intended as a starter template, not a real portfolio.
 ## 🚀 Getting Started
 ### 1. Install dependencies
 ```bash
-npm install
+npm install  
 
 ### 2. Start the dev server
 ```bash
-npm run dev
+npm run dev  
 
 
 The site will be available at:
@@ -140,13 +140,13 @@ This keeps markup clean while remaining fully customizable.
 Build the site:
 
 ```bash
-npm run build
+npm run build  
 
 
 Preview locally:
 
 ```bash
-npm run preview
+npm run preview  
 
 ---
 
@@ -181,6 +181,6 @@ you can buy me a coffee ☕✨
 <a href="https://buymeacoffee.com/lalicornecg?utm_source=github&utm_medium=readme&utm_campaign=support" target="_blank">
   <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-%23FFDD00?style=flat&logo=buymeacoffee&logoColor=black" />
 </a>
-
-
+<a href="https://buymeacoffee.com/lalicornecg?utm_source=github&utm_medium=readme&utm_campaign=support" target="_blank">
+<img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 ---
