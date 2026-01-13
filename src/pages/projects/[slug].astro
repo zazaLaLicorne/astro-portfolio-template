@@ -1,0 +1,471 @@
+---
+import { Image } from "astro:assets";
+import projects from "@/data/projects.json";
+import ProjectsLayout from "@/layouts/ProjectsLayout.astro";
+import Button from "@/components/Button.astro";
+import { TECH_REGISTRY } from "@/config/techRegistry";
+import Badge from "@/components/Badge.astro";
+
+// Générer toutes les routes statiques
+export function getStaticPaths() {
+  return projects.map((projet) => ({
+    params: { slug: projet.id },
+    props: { projet },
+  }));
+}
+
+// Récupérer le projet depuis les props
+const { projet } = Astro.props;
+
+if (!projet) {
+  throw new Error(`Projet introuvable`);
+}
+
+function badgeColor(score) {
+  const val = Number(score);
+  if (val >= 90) return "bg-green-500 text-white";
+  if (val >= 50) return "bg-yellow-500 text-black";
+  return "bg-red-500 text-white";
+}
+
+const hasSecurityHeaders = Boolean(projet.scores?.security_headers);
+
+const hasLighthouseDesktop = projet.scores?.lighthouse?.desktop &&
+  Object.values(projet.scores.lighthouse.desktop)
+    .some(v => v !== null && v !== "" && v !== undefined);
+
+const hasLighthouseMobile = projet.scores?.lighthouse?.mobile &&
+  Object.values(projet.scores.lighthouse.mobile)
+    .some(v => v !== null && v !== "" && v !== undefined);
+
+const hasAnyScore = hasSecurityHeaders || hasLighthouseDesktop || hasLighthouseMobile;
+
+// Pour la date plus lisible
+const date = new Date(projet.date).toLocaleDateString("fr-FR", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const gallery =
+  Array.isArray(projet.images)
+    ? projet.images.filter(
+        (img): img is string =>
+          typeof img === "string" && img.trim().length > 0
+      )
+    : [];
+
+const videosList = [
+  projet.videos?.desktop,
+  projet.videos?.tablet?.landscape,
+  projet.videos?.tablet?.portrait,
+  projet.videos?.mobile?.landscape,
+  projet.videos?.mobile?.portrait
+].filter(Boolean);
+const hasVideos = videosList.length > 0;
+const hasOneVideo = videosList.length === 1;
+
+function toEmbed(url) {
+  if (!url) return "";
+
+  if (url.includes("/shorts/")) {
+    return url.replace("youtube.com/shorts/", "www.youtube.com/embed/");
+  }
+
+  if (url.includes("youtu.be/")) {
+    return url.replace("youtu.be/", "www.youtube.com/embed/");
+  }
+
+  if (url.includes("watch?v=")) {
+    return url.replace("watch?v=", "embed/");
+  }
+
+  return url;
+}
+---
+
+<!-- PAGE PROJET -->
+<ProjectsLayout>  
+<div class="project-page">
+
+  <div data-aos="fade-up" class="max-w-4xl mt-10 pt-10 mx-auto ">
+
+    <!-- Titre + badge -->
+    <h1 class="text-4xl text-center font-bold mb-4">{projet.title}</h1>
+
+   {projet.badge && (
+  <div class="flex justify-center">
+
+    <Badge label={projet.badge} color={projet.badge} />
+  </div>
+)}
+
+    <p class="opacity-80 mb-10 text-center text-sm">
+      Projet publié le {date}
+    </p>
+
+    <!-- Thumbnail -->
+    <div data-aos="zoom-in" class="rounded-xl overflow-hidden shadow-lg mb-12">
+      {typeof projet.thumbnail === "string" && projet.thumbnail.length > 0 && (
+      <Image
+        src={projet.thumbnail}
+        alt={projet.title}
+        width={1200}
+        height={700}
+        loading="eager"
+        class="w-full h-auto object-cover"
+      />
+    )}
+    </div>
+
+    <!-- Description -->
+   <div data-aos="fade-up" class="project-description my-16" set:html={projet.description}>
+
+   </div>
+  </br>
+
+    <!-- Tech Stack -->
+    <div data-aos="fade-up" class="mb-16">
+      <h3 class="font-semibold text-center mb-8">Technologies utilisées</h3>
+      <div class="flex flex-wrap justify-center gap-6">
+        {Array.isArray(projet.techs) &&
+          projet.techs.map((tech) => {
+            const meta = TECH_REGISTRY[tech];
+            if (!meta) return null;
+            return (
+              <div class="flex flex-col gap-3 items-center">
+                <Image src={meta.icon} alt={meta.label} width={40} height={40} title={meta.label} class="w-10 h-10 object-contain"
+              loading="lazy"/>
+                {/* <span>{meta.label}</span> */}
+              </div>
+            );
+          })}
+      </div>
+    </div>
+        <!-- Liens externes  -->
+   {(projet.project_url || projet.github_url) && (
+  <div data-aos="fade-up" class="flex flex-col text-center gap-6 mb-20">
+    <h3 class="font-semibold mb-8">Liens du projet</h3>
+
+    {projet.project_url && (
+      <Button variant="projet" href={projet.project_url} target="_blank">
+        Voir le site
+      </Button>
+    )}
+
+    {projet.github_url && (
+      <Button variant="projet" href={projet.github_url} target="_blank">
+        <img src="/icons/tech/github.webp" alt="GitHub" class="w-5 h-5" />
+        Voir le code
+      </Button>
+    )}
+  </div>
+)}
+
+<!-- Scores du projet -->
+{hasAnyScore && (
+
+  <div class="mt-20" data-aos="fade-up">
+    <h3 class="font-semibold text-center mb-8">Scores du projet</h3>
+
+    <!-- GRID DES CARTES -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+
+      <!-- 🔒 SECURITY HEADERS -->
+      {hasSecurityHeaders && (
+        <div class="ui-glass-card ui-card-pad justify-center items-center text-center">
+
+          <h3 class="font-semibold text-center mb-8">Security Headers</h3>
+          <span class={`px-4 py-2 rounded-full font-bold text-sm ${badgeColor(Number(projet.scores.security_headers) * 10)}`}>
+            {projet.scores.security_headers}
+          </span>
+          <p class="opacity-70 text-sm mt-2">
+            Analyse des en-têtes HTTP pour la sécurité globale du site.
+          </p>
+        </div>
+      )}
+
+      <!-- 💻 LIGHTHOUSE DESKTOP -->
+      {hasLighthouseMobile && (
+        <div class="ui-glass-card ui-card-pad justify-center items-center text-center">
+          <h3 class="font-semibold text-center mb-8">
+            Lighthouse 💻 Desktop
+          </h3>
+
+          <div class="space-y-3">
+            {projet.scores.lighthouse.desktop.performance && (
+              <div class="flex justify-between items-center">
+                <span>Performance</span>
+                <span class={`px-3 py-1 rounded-full ${badgeColor(projet.scores.lighthouse.desktop.performance)}`}>
+                  {projet.scores.lighthouse.desktop.performance}
+                </span>
+              </div>
+            )}
+
+            {projet.scores.lighthouse.desktop.accessibility && (
+              <div class="flex justify-between items-center">
+                <span>Accessibilité</span>
+                <span class={`px-3 py-1 rounded-full ${badgeColor(projet.scores.lighthouse.desktop.accessibility)}`}>
+                  {projet.scores.lighthouse.desktop.accessibility}
+                </span>
+              </div>
+            )}
+
+            {projet.scores.lighthouse.desktop.best_practices && (
+              <div class="flex justify-between items-center">
+                <span>Best Practices</span>
+                <span class={`px-3 py-1 rounded-full ${badgeColor(projet.scores.lighthouse.desktop.best_practices)}`}>
+                  {projet.scores.lighthouse.desktop.best_practices}
+                </span>
+              </div>
+            )}
+
+            {projet.scores.lighthouse.desktop.seo && (
+              <div class="flex justify-between items-center">
+                <span>SEO</span>
+                <span class={`px-3 py-1 rounded-full ${badgeColor(projet.scores.lighthouse.desktop.seo)}`}>
+                  {projet.scores.lighthouse.desktop.seo}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      <!-- 📱 LIGHTHOUSE MOBILE -->
+      {projet.scores?.lighthouse?.mobile && (
+        <div class="ui-glass-card ui-card-pad justify-center items-center text-center">
+          <h3 class="font-semibold text-center mb-8">
+           Lighthouse 📱 Mobile
+          </h3>
+
+          <div class="space-y-3">
+            {projet.scores.lighthouse.mobile.performance && (
+              <div class="flex justify-between items-center">
+                <span>Performance</span>
+                <span class={`px-3 py-1 rounded-full ${badgeColor(projet.scores.lighthouse.mobile.performance)}`}>
+                  {projet.scores.lighthouse.mobile.performance}
+                </span>
+              </div>
+            )}
+
+            {projet.scores.lighthouse.mobile.accessibility && (
+              <div class="flex justify-between items-center">
+                <span>Accessibilité</span>
+                <span class={`px-3 py-1 rounded-full ${badgeColor(projet.scores.lighthouse.mobile.accessibility)}`}>
+                  {projet.scores.lighthouse.mobile.accessibility}
+                </span>
+              </div>
+            )}
+
+            {projet.scores.lighthouse.mobile.best_practices && (
+              <div class="flex justify-between items-center">
+                <span>Best Practices</span>
+                <span class={`px-3 py-1 rounded-full ${badgeColor(projet.scores.lighthouse.mobile.best_practices)}`}>
+                  {projet.scores.lighthouse.mobile.best_practices}
+                </span>
+              </div>
+            )}
+
+            {projet.scores.lighthouse.mobile.seo && (
+              <div class="flex justify-between items-center">
+                <span>SEO</span>
+                <span class={`px-3 py-1 rounded-full ${badgeColor(projet.scores.lighthouse.mobile.seo)}`}>
+                  {projet.scores.lighthouse.mobile.seo}
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+    </div>
+  </div>
+)}
+
+    <!-- Vidéos du projet -->
+{hasVideos && (
+  <div class="mt-20" data-aos="fade-up">
+    <h3 class="font-semibold text-center mb-8">Vidéos de présentation</h3>
+
+    <div
+      class={hasOneVideo
+        ? "grid grid-cols-1 gap-10 justify-items-center"
+        : "grid grid-cols-1 gap-10"}
+      data-aos="zoom-in"
+    >
+
+      {projet.videos.desktop && (
+        <div class="video-card rounded-xl overflow-hidden shadow-lg bg-black">
+        <iframe
+          class="w-full aspect-video"
+          src={toEmbed(projet.videos.desktop)}
+          title={`Vidéo du projet : ${projet.title} — Version Desktop`}
+          loading="lazy"
+          allowfullscreen
+          ></iframe>
+          <p class="text-center text-sm opacity-80 py-2">Version Desktop</p>
+        </div>
+      )}
+
+      {projet.videos.tablet?.landscape && (
+        <div class="video-card rounded-xl overflow-hidden shadow-lg bg-black">
+          <iframe
+            class="w-full aspect-video"
+            src={toEmbed(projet.videos.tablet.landscape)}
+            title={`Vidéo du projet : ${projet.title} — Tablette (Paysage)`}
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+
+          <p class="text-center text-sm opacity-80 py-2">Tablette (Paysage)</p>
+        </div>
+      )}
+
+      {projet.videos.tablet?.portrait && (
+        <div class="video-card rounded-xl overflow-hidden shadow-lg bg-black">
+          <iframe
+              class="w-full aspect-video"
+              src={toEmbed(projet.videos.tablet.portrait)}
+              title={`Vidéo du projet : ${projet.title} — Tablette (Portrait)`}
+              loading="lazy"
+              allowfullscreen
+            ></iframe>
+
+          <p class="text-center text-sm opacity-80 py-2">Tablette (Portrait)</p>
+        </div>
+      )}
+
+      {projet.videos.mobile?.landscape && (
+        <div class="video-card rounded-xl overflow-hidden shadow-lg bg-black">
+          <iframe
+            class="w-full aspect-video"
+            src={toEmbed(projet.videos.mobile.landscape)}
+            title={`Vidéo du projet : ${projet.title} — Mobile (Paysage)`}
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+          <p class="text-center text-sm opacity-80 py-2">Mobile (Paysage)</p>
+        </div>
+      )}
+
+      {projet.videos.mobile?.portrait && projet.videos.mobile.portrait !== "" && (
+        <div class="video-card rounded-xl overflow-hidden shadow-lg bg-black">
+          <iframe
+            class="w-full aspect-video"
+            src={toEmbed(projet.videos.mobile.portrait)}
+            title={`Vidéo du projet : ${projet.title} — Mobile (Portrait)`}
+            loading="lazy"
+            allowfullscreen
+          ></iframe>
+          <p class="text-center text-sm opacity-80 py-2">Mobile (Portrait)</p>
+        </div>
+      )}
+
+    </div>
+  </div>
+)}
+
+    <!-- Galerie / screenshots si existants -->
+   {gallery.length > 0 && (
+      <div data-aos="fade-up">
+        <h3 class="font-semibold text-center mb-8">Galerie</h3>
+        <div class="grid grid-cols-1 gap-6">
+          {gallery.map((img) => (
+            <div class="rounded-xl overflow-hidden shadow-lg">
+              <Image
+                src={img}
+                alt="Screenshot du projet"
+                width={200}
+                height={100}
+                class="w-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+  
+  <div  class="flex flex-col items-center justify-center gap-4 mt-12 p-4 sm:flex-row sm:gap-6">
+  <Button variant="retour" href="/projects">
+    ← Retour à la liste des projets
+  </Button>
+  <Button href="/#realisations" variant="retour">← Retour à l’accueil</Button>
+</div>
+    </div>
+  </div>
+<!-- </div> -->
+</ProjectsLayout> 
+
+<style>
+  /* Container principal de la page */
+  .project-page {
+    padding-inline: 1.5rem;
+  }
+
+  /* Container principal de la description */
+  .project-description {
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Titres h4 */
+.project-description :global(h2, h3, h4) {
+  /* font-size: 2rem;  */
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+
+  /* Paragraphes */
+  .project-description :global(p) {
+    margin: 1rem 0;
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
+    font-weight: 400;
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* Listes UL - CORRECTION PRINCIPALE */
+  .project-description :global(ul) {
+    display: block;
+    list-style-type: disc;
+    list-style-position: outside;
+    margin: 1rem 0;
+    padding-left: 2rem;
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
+  }
+
+  /* Items de liste */
+  .project-description :global(li) {
+    display: list-item;
+    margin: 0.5rem 0;
+    line-height: 1.6;
+  }
+
+  /* Texte en gras */
+  .project-description :global(strong) {
+    font-weight: 700;
+  }
+
+  /* Texte en italique */
+  .project-description :global(em) {
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    .project-page {
+      padding-inline: 1.25rem;
+    }
+    .project-description :global(p),
+    .project-description :global(ul),
+    .project-description :global(li) {
+      text-align: left;
+    }
+  }
+
+</style>

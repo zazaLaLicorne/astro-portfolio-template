@@ -1,0 +1,117 @@
+---
+import { Image } from "astro:assets";
+const { cert } = Astro.props;
+---
+
+<div
+  class="flip-card
+    w-full max-w-none /* mobile : pleine largeur */
+    sm:max-w-[26rem] /* tablette portrait : un peu plus large */
+    md:w-96 md:h-[28rem] /* DESKTOP : tes dimensions ORIGINALES */
+    relative
+    h-[24rem] sm:h-[26rem] /* mobile/tablette : hauteur adaptée */
+    text-center"
+  data-aos="flip-left"
+  data-aos-easing="ease-out-cubic"
+  data-aos-duration="2000"
+>
+  <div class="flip-inner">
+    <!-- FACE AVANT -->
+    <div class="flip-front ui-glass-card p-4 flex flex-col items-center justify-start h-full overflow-hidden">
+      <Image
+        src={cert.image}
+        alt={cert.title}
+        width={231}
+        height={210}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+        class="w-full h-auto max-h-[60%] object-contain mb-3"
+        loading="lazy"
+      />
+
+      <h2 class="text-xl text-neon font-bold">{cert.title}</h2>
+      <p class="text-sm opacity-80">{cert.subtitle}</p>
+      <p class="text-xs mt-1">Émis par : {cert.issuer}</p>
+    </div>
+
+    <!-- FACE ARRIÈRE -->
+    <div class="flip-back ui-glass-card p-4 flex flex-col h-full">
+      <!-- HEADER FIXE -->
+      <div class="flex-shrink-0 mb-2">
+        <h3 class="text-lg font-semibold">Compétences & contenu</h3>
+      </div>
+
+      <!-- ZONE SCROLLABLE -->
+      <div class="flex-1 overflow-y-auto pr-1">
+        <!-- Résumé -->
+        {cert.summary && <p class="text-sm mb-4">{cert.summary}</p>}
+
+        <!-- Compétences -->
+        {
+          Array.isArray(cert.skills) && cert.skills.length > 0 && (
+            <>
+              <h4 class="text-sm font-semibold mb-1">Compétences acquises</h4>
+
+              <ol class="text-sm text-left list-decimal space-y-1 mb-3">
+                {cert.skills.map((skill) => (
+                  <li>{skill}</li>
+                ))}
+              </ol>
+            </>
+          )
+        }
+
+        <!-- Fallback -->
+        {
+          !cert.summary &&
+            (!Array.isArray(cert.skills) || cert.skills.length === 0) && (
+              <p class="text-sm italic opacity-70">Détails non renseignés</p>
+            )
+        }
+      </div>
+
+      <!-- FOOTER FIXE -->
+      <p class="text-xs mt-2 flex-shrink-0">
+        Date d’émission : {cert.date}
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+ /* Container */
+.flip-card {
+  perspective: 1000px;
+}
+
+.cert-header {
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+/* Mécanique interne */
+.flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Face cachée + face visible */
+.flip-front,
+.flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+/* Face arrière */
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Hover : on retourne */
+.flip-card:hover .flip-inner {
+  transform: rotateY(180deg);
+}
+
+  </style>

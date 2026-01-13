@@ -1,0 +1,50 @@
+---
+import SocialLinks from "./SocialLinks.astro";
+---
+
+<footer
+  class="backdrop-blur-md shadow-md transition-colors duration-300 border-t font-medium border-accent dark:border-neon mt-auto"
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="text-center">
+      <!-- <p class= mb-4">
+        © {new Date().getFullYear()} John DOE — Tous droits réservés.
+      </p> -->
+
+      <nav>
+        <ul class="flex justify-center footer-links gap-6 text-sm">
+          <li>
+            <a
+              href="/m-legales"
+              class="hover:text-accent font-medium transition-colors"
+            >
+              Mentions légales
+            </a>
+          </li>
+          <li>
+            <a
+              aria-label="gerer les cookies"
+              id="manage-cookies"
+              class="hover:text-accent font-medium transition-colors"
+            >
+              Gérer mes cookies
+            </a>
+            </li>
+            <li>
+              <div class="flex flex-col items-center">
+              <p>Template by La Licorne Cosmique — Support the project ☕</p>
+              <a href="https://buymeacoffee.com/lalicornecg?utm_source=portfolio&utm_medium=footer&utm_campaign=support" target="_blank">
+                <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-%23FFDD00?style=flat&logo=buymeacoffee&logoColor=black" />
+              </a>
+              </div>
+            </li>
+            </div>
+          </ul>
+          
+          <p class="text-center">⚠️ Démo / Template — contenu fictif, images placeholders</p>
+        <!-- </ul> -->
+        <!-- <SocialLinks context="footer" variant="horizontal" size="sm" showLabel={false} showTooltip={false} /> -->
+      </nav>
+    </div>
+  </div>
+</footer>

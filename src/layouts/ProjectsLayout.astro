@@ -1,0 +1,39 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import "../styles/global.css";
+---
+
+<BaseLayout layout="layout-projects">
+  <div class="w-full relative ">
+  <main class="content-wrapper mx-auto py-12 px-6 sm:px-8 lg:px-10 text-base md:text-lg leading-relaxed">
+    <slot />
+  </main>
+</div>
+</BaseLayout>
+
+<style>
+  /* espace central adapté au contenu */
+  .content-wrapper {
+    max-width: 1100px;
+    text-align: left;
+    color: var(--color-text);
+  }
+
+  /* listes classiques */
+  .content-wrapper ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  .content-wrapper li {
+    margin-bottom: 0.4rem;
+  }
+
+  .content-wrapper h1,
+  .content-wrapper h2,
+  .content-wrapper h3,
+  .content-wrapper h4 {
+    text-align: left;
+  }
+</style>

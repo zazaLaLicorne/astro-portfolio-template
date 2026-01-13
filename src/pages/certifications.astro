@@ -1,0 +1,45 @@
+---
+import CertificationCard from "@/components/CertificationCard.astro";
+import certifications from "../data/certifications.json";
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "@/components/Button.astro";
+
+const PRIORITY_ORDER = {
+  high: 0,
+  medium: 1,
+  low: 2,
+};
+
+const sortedCertifications = [...certifications].sort(
+  (a, b) =>
+    (PRIORITY_ORDER[a.priority] ?? 99) - (PRIORITY_ORDER[b.priority] ?? 99)
+);
+---
+
+<BaseLayout>
+  <div
+    class="w-full"
+  >
+    <section class="px-4 py-20">
+      <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl font-bold text-center mb-12">
+          Toutes mes certifications
+        </h1>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 gap-10 justify-items-center"
+        >
+          {
+            sortedCertifications.map((cert) => (
+              <CertificationCard cert={cert} />
+            ))
+          }
+        </div>
+        <div class="mt-12 text-center">
+          <Button href="/#certifications" variant="gradient">← Retour à l’accueil</Button>
+        </div>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,53 @@
+---
+interface Props {
+  variant?: "default" | "retour" | "validez" | "supprimer" | "gradient" | "projet" | "pagination";
+  type?: "button" | "submit" | "reset";
+  href?: string; // si présent, rend le bouton comme un <a>
+  class?: string;
+  // On autorise toutes les autres props HTML
+  [key: string]: any;
+}
+
+const {
+  variant = "default",
+  type = "button",
+  class: extra = "",
+  href,
+  ...rest
+} = Astro.props;
+
+const base =
+  "inline-flex px-4 py-2 rounded-full transition font-semibold transform hover:translate-y-0.5 duration-200";
+
+const variants: Record<string, string> = {
+  default: "bg hover:bg-bg-secondary dark:hover:bg-bg-dark",
+
+  retour: "bg-bg hover:text-accent hover:bg-text dark:hover:text-bg",
+
+  validez: "bg-emerald-500 text-white hover:bg-emerald-600 shadow-md",
+
+  supprimer: "bg-rose-500 text-white hover:bg-rose-600 shadow-md",
+
+  gradient: "animated-gradient hover:opacity-90 ",
+
+  projet:"gap-2 border justify-center items-center border-accent dark:border-neon dark:hover:text-accent hover:bg-neon dark:hover:bg-neon",
+
+};
+
+
+const classes = `${base} ${variants[variant]} ${extra}`;
+---
+
+{
+  href ? (
+    <a href={href} class={classes} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes} {...rest}>
+      <slot />
+    </button>
+  )
+}
+
+

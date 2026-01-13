@@ -1,0 +1,113 @@
+---
+import { Image } from "astro:assets";
+import { TECH_REGISTRY } from "@/config/techRegistry";
+
+interface Props {
+  size?: "sm" | "md" | "lg";
+}
+
+const { size = "md" } = Astro.props;
+
+const categories = [
+  {
+    title: "Conception & Suivi Projet",
+    techs: ["figma", "canva", "notion"],
+  },
+  {
+    title: "Langages",
+    techs: ["js", "ts", "html", "css"],
+  },
+  {
+    title: "Framework Front",
+    techs: ["react", "reactnative", "astro", "next"],
+  },
+  {
+    title: "Backend & BDD",
+    techs: ["node", "mongodb", "express"],
+  },
+  {
+    title: "Bibliothèques CSS",
+    techs: ["tailwind", "daisyui", "shadcnui"],
+  },
+  {
+    title: "Outils",
+    techs: ["github", "vercel", "ga", "gsc", "vscode", "cloudinary"],
+  },
+];
+
+const sizeClasses = {
+  sm: "w-10 h-10",
+  md: "w-16 h-16",
+  lg: "w-20 h-20",
+};
+---
+
+<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3 text-center">
+  {
+    categories.map((category, index) => (
+      <div
+        class="ui-glass-card ui-card-pad ui-hover-lift flex flex-col items-center justify-center"
+        data-aos="fade-up"
+        data-aos-delay={index * 200}
+      >
+        <h3 class="mb-4 text-xl font-bold">{category.title}</h3>
+
+        <div class="flex flex-wrap justify-center gap-4">
+          {category.techs.map((tech) => {
+            const meta = TECH_REGISTRY[tech];
+            if (!meta) return null;
+
+            return (
+              <div class="flex flex-col items-center transition-transform hover:scale-110">
+                <Image
+                  src={meta.icon}
+                  alt={meta.label}
+                  width={100}
+                  height={100}
+                  class={`rounded-md object-contain ${sizeClasses[size]}`}
+                  loading="lazy"
+                />
+                <span class="text-sm text-center mt-2">{meta.label}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ))
+  }
+</div>
+
+<style>
+  .card {
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+  .card:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+  }
+
+  img {
+    transition:
+      transform 0.3s ease,
+      filter 0.3s ease;
+  }
+
+  img:hover {
+    animation: pulse 1.5s ease-in-out infinite;
+    transform: scale(1.15);
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      filter: brightness(1);
+    }
+    50% {
+      transform: scale(1.1);
+      filter: brightness(1.25);
+    }
+  }
+</style>

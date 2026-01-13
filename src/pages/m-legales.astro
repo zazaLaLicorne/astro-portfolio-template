@@ -1,0 +1,156 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+---
+
+<BaseLayout>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <h1 class="text-center">
+      Mentions légales
+    </h1>
+    <section class="flex flex-col text-center gap-4 mt-8"> 
+      <h2>
+        1. Éditeur du site
+      </h2>
+      <p >
+        Le présent site est édité par :
+        <strong >Votre nom</strong>,Votre métier, exerçant à l’adresse
+        suivante :
+      </p>
+      <p >
+        votre adresse<br />
+        Téléphone : <a href="tel:+33682157497">01 23 45 67 89</a><br />
+        Email : <a href="mailto:johndoe@gmail.com"
+          >johndoe@gmail.com</a
+        ><br />
+        Auto-entrepreneur<br />
+        Numéro SIREN : <strong>votre numéro de siren</strong><br />
+        Responsable de la publication : votre nom
+      </p>
+      <p >
+        Le site a pour objectif de présenter les activités professionnelles de
+        la développeuse Web et de faciliter la prise de contact ou de
+        rendez-vous.
+      </p>
+     
+      <p >
+        Site réalisé avec le framework <strong>Astro</strong> (sans base de données
+        ni backend).
+      </p>
+    
+      <h2>
+        2. Hébergement
+      </h2>
+      <p >
+        Ce site est hébergé par :
+        <strong>Vercel Inc.</strong><br />
+        440 N Barranca Ave #4133<br />
+        Covina, CA 91723, États-Unis<br />
+        Site : <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a>
+      </p>
+    
+      <h2>
+        3. Cookies et mesures d’audience
+      </h2>
+      <p >
+        Ce site utilise uniquement des cookies de mesure d’audience via Google
+        Analytics, soumis à votre consentement. Ces cookies permettent
+        d’améliorer le contenu du site selon les usages des visiteurs. Aucune
+        donnée personnelle nominative n’est collectée sans votre accord
+        explicite.
+      </p>
+      <p >
+        Vous pouvez à tout moment accepter ou refuser le dépôt de cookies via la
+        bannière de consentement affichée lors de votre première visite.
+      </p>
+    
+      <h2>
+        4. Prise de rendez-vous et données personnelles
+      </h2>
+      <p >
+        Le site intègre un module <strong>Calendly</strong> pour la gestion des rendez-vous.
+        Ce service tiers peut déposer des cookies nécessaires à son fonctionnement.
+        Les informations fournies (nom, email, créneau horaire) sont utilisées uniquement
+        pour l’organisation des rendez-vous et ne sont pas conservées sur ce site.
+      </p>
+      <p >
+        Pour plus d’informations, consultez la politique de confidentialité de
+        Calendly :
+        <a href="https://calendly.com/privacy" target="_blank" rel="noopener"
+          >https://calendly.com/privacy</a
+        >.
+      </p>
+    
+
+      <h2>
+        5. Propriété intellectuelle
+      </h2>
+      <p >
+        L’ensemble du contenu de ce site (textes, images, graphismes, logo,
+        icônes, structure) est la propriété exclusive de VOTRE NOM, sauf
+        mention contraire. Toute reproduction, représentation, modification ou
+        utilisation sans autorisation préalable est interdite.
+      </p>
+
+      <h2>
+        6. Liens externes
+      </h2>
+      <p>
+        Le site propose des liens vers des services externes (
+        Calendly, email, téléphone). Ces liens redirigent vers des plateformes
+        dont le fonctionnement est indépendant. L’éditeur ne peut être tenu
+        responsable de leur contenu ni de leurs politiques de confidentialité.
+      </p>
+
+      <h2>
+        7. Collecte et traitement des données
+      </h2>
+      <p>
+        Le site ne collecte aucune donnée personnelle directement (pas de
+        formulaire ni de base de données). Les seules données éventuellement
+        collectées proviennent :
+      </p>
+      <ul >
+        <li >
+          du service <strong>Google Analytics</strong>, utilisé à des fins
+          statistiques anonymisées ;
+        </li>
+        <li >
+          du widget <strong>Calendly</strong> (lors de la prise de rendez-vous, via
+          leur propre interface) ;
+        </li>
+        <li>
+          de l’action volontaire de l’utilisateur lorsqu’il clique sur un lien
+          mailto ou téléphone.
+        </li>
+      </ul>
+      <p>
+        Conformément au Règlement Général sur la Protection des Données (RGPD),
+        vous disposez d’un droit d’accès, de rectification et de suppression de
+        vos données. Pour toute demande, vous pouvez écrire à :
+        <a href="mailto:lalicornecosmique62@gmail.com">lalicornecosmique62@gmail.com</a>
+      </p>
+  
+      <h2>
+        8. Limitation de responsabilité
+      </h2>
+      <p>
+        L’éditeur s’efforce d’assurer l’exactitude des informations diffusées
+        sur le site, mais ne saurait être tenu responsable d’erreurs,
+        d’omissions ou de toute interruption de service.
+      </p>
+
+      <h2>
+        9. Droit applicable
+      </h2>
+      <p>
+        Les présentes mentions légales sont régies par le droit français. Tout
+        litige relatif à l’utilisation du site relève de la compétence exclusive
+        des tribunaux français.
+      </p>
+    </section>
+  <div class="mt-12 text-center">
+    <Button href="/" variant="gradient" >← Retour à l’accueil</Button>
+  </div>
+</BaseLayout>

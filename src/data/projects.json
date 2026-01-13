@@ -1,0 +1,212 @@
+[
+  {
+    "id": "project-1",
+    "title": "Project Title 1",
+    "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><ul><li>Feature example one</li><li>Feature example two</li><li>Feature example three</li></ul>",
+    "project_url": "https://example.com",
+    "github_url": "https://github.com/johndoe/example-project",
+    "badge": "independant",
+    "priority": "high",
+    "thumbnail": "https://picsum.photos/200/100",
+    "images": [ 
+      "https://picsum.photos/100/80",
+      "https://picsum.photos/150/100",
+      "https://picsum.photos/80"
+    ],
+    "date": "2025-11-20",
+    "techs": [
+      "astro",
+      "css",
+      "html"
+    ],
+    "videos": {
+      "desktop": "https://www.youtube.com/watch?v=ScMzIvxBSi4",
+      "mobile": {
+        "portrait": "https://www.youtube.com/watch?v=NpEaa2P7qZI",
+        "landscape": ""
+      },
+      "tablet": {
+        "portrait": "",
+        "landscape": ""
+      }
+    },
+    "scores": {
+      "lighthouse": {
+        "desktop": {
+          "performance": "95",
+          "accessibility": "95",
+          "best_practices": "95",
+          "seo": "95"
+        },
+        "mobile": {
+          "performance": "90",
+          "accessibility": "90",
+          "best_practices": "90",
+          "seo": "90"
+        }
+      },
+      "security_headers": "A"
+    },
+    "createdAt": "2025-12-18T17:06:16.603Z"
+  },
+  {
+    "id": "project-2",
+    "title": "Project Title 2",
+    "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><ul><li>Feature example one</li><li>Feature example two</li><li>Feature example three</li></ul>",
+    "project_url": "https://example.com",
+    "github_url": "https://github.com/johndoe/example-project",
+    "badge": "formation",
+    "priority": "low",
+    "thumbnail": "https://picsum.photos/200/100",
+    "images": ["https://picsum.photos/80/100"],
+    "techs": [
+      "cloudinary",
+      "express",
+      "mongodb",
+      "next",
+      "reactnative",
+      "vercel"
+    ],
+    "videos": {},
+    "date": "2024-12-20",
+    "createdAt": "2025-12-18T17:07:34.991Z",
+    "scores": {
+      "lighthouse": {
+        "desktop": {
+          "performance": "95",
+          "accessibility": "95",
+          "best_practices": "95",
+          "seo": "95"
+        },
+        "mobile": {
+          "performance": "90",
+          "accessibility": "90",
+          "best_practices": "90",
+          "seo": "90"
+        }
+      },
+      "security_headers": "A"
+    }
+  },
+  {
+    "id": "project-3",
+    "title": "Project Title 3",
+    "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><ul><li>Feature example one</li><li>Feature example two</li><li>Feature example three</li></ul>",
+    "project_url": "https://example.com",
+    "github_url": "https://github.com/johndoe/example-project",
+    "badge": "personnel",
+    "priority": "medium",
+    "thumbnail": "https://picsum.photos/200/100",
+    "images": ["https://picsum.photos/200/100", "https://picsum.photos/200/100", "https://picsum.photos/200/100"],
+    "techs": [
+      "cloudinary",
+      "ga",
+      "gsc",
+      "mongodb",
+      "next",
+      "react",
+      "shadcnui",
+      "tailwind",
+      "ts",
+      "vercel"
+    ],
+    "videos": {},
+    "scores": {
+      "lighthouse": {
+        "desktop": {
+          "performance": "95",
+          "accessibility": "95",
+          "best_practices": "95",
+          "seo": "95"
+        },
+        "mobile": {
+          "performance": "90",
+          "accessibility": "90",
+          "best_practices": "90",
+          "seo": "90"
+        }
+      },
+      "security_headers": "A"
+    },
+    "date": "2025-07-22",
+    "createdAt": "2025-12-18T17:15:20.123Z"
+  },
+  {
+    "id": "project-4",
+    "title": "Project Title 4",
+    "date": "02/01/2026",
+    "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><ul><li>Feature example one</li><li>Feature example two</li><li>Feature example three</li></ul>",
+    "project_url": "https://example.com",
+    "github_url": "https://github.com/johndoe/example-project",
+    "badge": "personnel",
+    "priority": "high",
+    "thumbnail": "https://picsum.photos/200/100",
+    "images": "",
+    "techs": [
+      "astro",
+      "cloudinary",
+      "css",
+      "gsc",
+      "html",
+      "tailwind",
+      "ts",
+      "vercel"
+    ],
+    "scores": {
+      "lighthouse": {
+        "desktop": {
+          "performance": "95",
+          "accessibility": "95",
+          "best_practices": "95",
+          "seo": "95"
+        },
+        "mobile": {
+          "performance": "90",
+          "accessibility": "90",
+          "best_practices": "90",
+          "seo": "90"
+        }
+      },
+      "security_headers": "A"
+    },
+    "createdAt": "2025-12-29T17:43:09.797Z",
+    "videos": {}
+  },
+  {
+    "id": "project-5",
+    "title": "Project Title 5",
+    "date": "10/10/2025",
+    "description": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p><ul><li>Feature example one</li><li>Feature example two</li><li>Feature example three</li></ul>",
+    "project_url": "https://example.com",
+    "github_url": "https://github.com/johndoe/example-project",
+    "badge": "stage",
+    "priority": "high",
+    "thumbnail": "https://picsum.photos/200/100",
+    "images": "",
+    "techs": [
+      "astro",
+      "css",
+      "html",
+      "ts"
+    ],
+    "scores": {
+      "lighthouse": {
+        "desktop": {
+          "performance": "95",
+          "accessibility": "95",
+          "best_practices": "95",
+          "seo": "95"
+        },
+        "mobile": {
+          "performance": "90",
+          "accessibility": "90",
+          "best_practices": "90",
+          "seo": "90"
+        }
+      },
+      "security_headers": "A"
+    },
+    "createdAt": "2025-12-29T17:54:10.004Z",
+    "videos": {}
+  }
+]

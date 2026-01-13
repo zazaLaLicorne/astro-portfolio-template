@@ -1,0 +1,297 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  variant?: "horizontal" | "vertical";
+  size?: "sm" | "md" | "lg";
+  showLabel?: boolean;
+  context?: "hero" | "footer";
+  showTooltip?: boolean;
+}
+
+const {
+  variant = "horizontal",
+  size = "md",
+  showLabel = false,
+  context = "hero",
+  showTooltip = true,
+} = Astro.props;
+
+const socialLinks = [
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/johndoe/",
+    icon: import("../assets/sociallink/linkedin.webp"),
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/johndoe",
+    iconDark: import("../assets/sociallink/githubnoir.webp"),
+    iconLight: import("../assets/sociallink/githubblanc.webp"),
+  },
+  {
+    name: "Malt",
+    url: "https://www.malt.fr/profile/johndoe",
+    icon: import("../assets/sociallink/malt.webp"),
+  },
+  {
+    name: "X",
+    url: "https://x.com/johndoe",
+    icon: import("../assets/sociallink/x.webp"),
+  },
+  {
+    name: "Facebook",
+    url: "https://www.facebook.com/johndoe",
+    icon: import("../assets/sociallink/facebook.webp"),
+  },
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/johndoe",
+    icon: import("../assets/sociallink/instagram1.png"),
+  },
+  {
+    name: "Discord",
+    url: "https://discord.gg/INVITE_CODE",
+    icon: import("../assets/sociallink/discord.webp"),
+  },
+];
+
+const sizePx = {
+  sm: 20,
+  md: 28,
+  lg: 36,
+};
+
+const buttonSize = {
+  sm: "w-10 h-10",
+  md: "w-12 h-12",
+  lg: "w-16 h-16",
+};
+---
+
+<nav
+  class={`social-links ${context} ${variant === "vertical" ? "vertical" : "horizontal"}`}
+  aria-label="Réseaux sociaux"
+>
+  {
+    socialLinks.map((link) => (
+      <a
+        href={link.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        class={`social-link ${buttonSize[size]}`}
+        aria-label={`Visitez mon profil ${link.name}`}
+      >
+        {showTooltip && <span class="tooltip">{link.name}</span>}
+        {/* Cas GitHub (dark / light) */}
+        {link.iconLight && (
+          <>
+            <Image
+              src={link.iconLight}
+              alt={link.name}
+              width={sizePx[size]}
+              height={sizePx[size]}
+              class="social-icon light-only"
+              loading="eager"
+            />
+            <Image
+              src={link.iconDark}
+              alt={link.name}
+              width={sizePx[size]}
+              height={sizePx[size]}
+              class="social-icon dark-only"
+              loading="eager"
+            />
+          </>
+        )}
+
+        {/* Cas simple (LinkedIn, Malt) */}
+        {link.icon && (
+          <Image
+            src={link.icon}
+            alt={link.name}
+            width={sizePx[size]}
+            height={sizePx[size]}
+            class="social-icon"
+            loading="eager"
+          />
+        )}
+
+        {showLabel && <span class="social-label">{link.name}</span>}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .social-links.vertical {
+    flex-direction: column;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+    border-radius: 999px;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease;
+    text-decoration: none;
+    position: relative;
+    isolation: isolate;
+  }
+
+  .social-link:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .social-icon {
+    display: block;
+    border-radius: 999px;
+  }
+  /* Wrap en mode horizontal */
+  .social-links.horizontal {
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
+
+  /* ===============================
+   CONTEXT: HERO
+================================ */
+  .social-links.hero {
+    justify-content: center;
+  }
+
+  /* ===============================
+   CONTEXT: FOOTER
+================================ */
+  .social-links.footer {
+    justify-content: center;
+    gap: 0.75rem;
+  }
+
+  .social-links.footer .social-link {
+    transform: none;
+  }
+
+  .social-links.footer .social-link:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Footer: tooltips souvent inutiles (mais tu peux les laisser via prop) */
+  .social-links.footer .tooltip {
+    display: none;
+  }
+
+  /* Footer: icônes un peu plus sobres */
+  .social-links.footer .social-icon {
+    opacity: 0.9;
+  }
+
+  .social-links.footer .social-link:hover .social-icon {
+    opacity: 1;
+  }
+  /* Gestion dark / light */
+  .dark-only {
+    display: none;
+  }
+
+  :global(.dark) .light-only {
+    display: none;
+  }
+
+  :global(.dark) .dark-only {
+    display: block;
+  }
+
+  .social-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 640px) {
+    .social-link:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+  @media (max-width: 640px) {
+    .social-links.vertical {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      row-gap: 1rem;
+    }
+  }
+
+  .social-link .tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1;
+    background-color: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    border-radius: 6px;
+    white-space: nowrap;
+    border-top-color: var(--tooltip-bg);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    z-index: 1000;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease,
+      visibility 0.2s ease;
+  }
+
+  /* flèche */
+  .social-link .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #111827;
+  }
+
+  /* ===============================
+   AFFICHAGE
+================================ */
+
+  .social-link:hover .tooltip,
+  .social-link:focus-visible .tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ===============================
+   MOBILE : OFF
+================================ */
+
+  @media (hover: none) {
+    .social-link .tooltip {
+      display: none;
+    }
+  }
+</style>

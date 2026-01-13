@@ -1,0 +1,33 @@
+[
+  {
+    "id": "review-1",
+    "author": "Reviewer 1",
+    "role": "Responsable informatique et cybersécurité",
+    "relationship": "Professional feedback",
+    "source": "LinkedIn",
+    "date": "15/10/2025",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "rating": 4,
+    "image": "https://picsum.photos/200/100"
+  },
+  {
+    "author": "Reviewer 2",
+    "role": "Praticienne en relation d'aide",
+    "relationship": "Professional feedback",
+    "source": "malt",
+    "date": "16/11/2025",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "image": "https://picsum.photos/200/100",
+    "id": "review-2"
+  },
+  {
+    "author": "Reviewer 3",
+    "role": "",
+    "source": "Google",
+    "date": "17/11/2025",
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "rating": 5,
+    "image": "https://picsum.photos/200/100",
+    "id": "review-3"
+  }
+]

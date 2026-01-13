@@ -1,0 +1,27 @@
+---
+interface Props {
+  label: string;
+  color?: string; // On le laisse en string pour accepter les valeurs du JSON
+}
+
+const { label = "Badge", color = "" } = Astro.props;
+
+// On mappe les noms qui arrivent de ton JSON vers tes couleurs Tailwind
+const themeMap: Record<string, string> = {
+  "independant": "bg-freelance shadow-md",
+  "personnel": "bg-perso shadow-md",
+  "stage": "bg-stage shadow-md",
+  "formation": "bg-formation shadow-md",
+  "professionnel": "bg-accent shadow-md", 
+};
+
+// Si le badge n'est pas dans la liste, on utilise bg-accent par défaut
+const selectedStyle = themeMap[label] || "bg-accent shadow-md";
+---
+
+<span class:list={[
+  "inline-flex items-center justify-center text-[0.8rem] font-semibold px-3 py-1  my-1 rounded-full text-white transition-transform duration-200 hover:scale-105",
+  selectedStyle
+]}>
+  {label}
+</span>

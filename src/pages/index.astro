@@ -1,0 +1,361 @@
+---
+import Button from "../components/Button.astro";
+import SocialLinks from "../components/SocialLinks.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+
+import portrait from "../assets/images/portrait.jpg";
+import bgHeroDark from "../assets/images/hero/dark.jpg";
+import bgHeroLight from "../assets/images/hero/light.jpg";
+import setup from "../assets/images/setup.jpg";
+import portrait2 from "../assets/images/portrait2.jpg";
+
+import TechCards from "../components/TechCards.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import allProjects from "../data/projects.json";
+import certifications from "../data/certifications.json";
+import CertificationCard from "../components/CertificationCard.astro";
+import Reviews from "@/components/Reviews.astro";
+
+const priorityOrder = {
+  high: 1,
+  medium: 2,
+  low: 3,
+};
+
+// tri + limitation à 4 projets
+const projects = [...allProjects]
+  .sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority])
+  .slice(0, 4);
+---
+
+<BaseLayout>
+  <div class="relative">
+    <div class="relative w-full overflow-hidden">
+      <!-- IMAGE HERO LIGHT (LCP) -->
+      <Image
+        src={bgHeroDark}
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+        widths={[400, 800, 1200, bgHeroDark.width]}
+        sizes="(max-width: 768px) 100vw, 100vw"
+        class="absolute inset-0 w-full h-full object-cover -z-10 hidden dark:block"
+        sizes="(max-width: 768px) 100vw, 768px"
+      />
+
+      <Image
+        src={bgHeroLight}
+        alt=""
+        loading="eager"
+        fetchpriority="high"
+        widths={[400, 800, 1200, bgHeroDark.width]}
+        sizes="(max-width: 768px) 100vw, 100vw"
+        class="absolute inset-0 w-full h-full object-cover -z-10 dark:hidden"
+        sizes="(max-width: 768px) 100vw, 768px"
+      />
+
+      <!-- OVERLAY OPTIONNEL (gradient / voile) -->
+      <!-- <div class="absolute inset-0 bg-white/30 dark:bg-black/50"></div> -->
+      <!-- HERO CONTENT -->
+      <div
+        class="relative w-full min-h-screen flex items-center justify-center overflow-hidden"
+      >
+        <div
+          class="text-center grid items-center flex-grow gap-4 max-w-4xl mx-auto"
+        >
+          <Image
+            src={portrait}
+            alt="Portrait de John Doe"
+            class="rounded-full justify-self-center bordure-magique w-[150px] h-[150px] md:w-[250px] md:h-[250px] object-cover"
+            width={400}
+            height={400}
+            widths={[200, 400, 600]}
+            fetchpriority="high"
+            sizes="(max-width: 768px) 150px, 200px"
+            loading="eager"
+            data-aos="fade-down"
+            data-aos-duration="1200"
+            data-aos-offset="200"
+          />
+          <h1
+            class="text-gradient text-6xl md:text-6xl font-extrabold mb-6"
+            data-aos="zoom-in-up"
+            data-aos-duration="1200"
+            data-aos-offset="200"
+          >
+            John DOE
+          </h1>
+          <div>
+            <h2
+              class="italic text-neon"
+              data-aos="zoom-in-down"
+              data-aos-duration="1200"
+              data-aos-offset="200"
+            >
+             Développeur Web
+            </h2>
+          </div>
+          <!-- <SocialLinks context="hero" variant="horizontal" size="lg" showLabel={false} showTooltip={true} /> -->
+
+          <p
+            class="text-3xl max-w-2xl mx-auto mb-4"
+            data-aos="zoom-out-up"
+            data-aos-duration="1200"
+            data-aos-offset="200"
+          >
+            une phrase ou citation d'acceuil, slogan, pitch...
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sections Container -->
+    <div class="space-y-32 py-20">
+      <!-- About Section -->
+      <section id="about" class="px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center section-inner">
+            <h2 class="text-4xl font-bold mb-12">À propos de moi</h2>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+              <Image
+                src={portrait2}
+                alt="Portrait de John Doe à son set-up de travail"
+                class="bordure-magique rounded-3xl h-auto mx-auto"
+                width={400}
+                height={300}
+                loading="lazy"
+                data-aos="zoom-in-down"
+              />
+
+              <div class="ui-glass-card ui-card-pad">
+                <p
+                  data-aos="fade-right"
+                  data-aos-duration="1200"
+                  class="text-xl"
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere earum ipsa officia sapiente quaerat fugiat corrupti enim explicabo officiis! Saepe nam ipsam reiciendis est rerum at sequi. Minima, ea labore?
+                </p>
+                <hr class="hr-gradient" />
+
+                <p
+                  class="text-xl"
+                  data-aos="fade-left"
+                  data-aos-duration="1200"
+                 
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod ipsa, sequi quam assumenda necessitatibus ex tempore. Ratione, mollitia placeat. Voluptates expedita eius aperiam quam, id harum error voluptatibus odio ducimus!
+                </p>
+                <hr class="hr-gradient" />
+
+                <p
+                  class="text-xl"
+                  data-aos="fade-right"
+                  data-aos-duration="1200"
+                  
+                >
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Et cumque cupiditate veritatis repellendus dicta voluptas, velit repudiandae reiciendis ullam, nihil eius mollitia quia illum sequi distinctio fugit iusto architecto sit.
+                </p>
+                <hr class="hr-gradient" />
+
+                <p
+                  class="text-xl"
+                  data-aos="fade-left"
+                  data-aos-duration="1200"
+                >Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum, eligendi. Modi officiis eos sunt at ratione aliquam sequi natus cum. Recusandae voluptates ipsam deleniti fugit harum, omnis veritatis delectus nesciunt.
+                </p>
+                <hr class="hr-gradient" />
+
+                <p
+                  class="text-xl"
+                  data-aos="fade-right" 
+                  data-aos-duration="1200"
+                >
+                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Atque officiis suscipit praesentium aperiam, iste consequuntur sed voluptatibus nemo laborum, culpa dolorum eligendi quo quisquam cupiditate, vel sint perspiciatis facilis. Laudantium.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center section-inner">
+            <h2 class="text-4xl font-bold mb-12">Mes Services</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+              <div
+                class="ui-glass-card ui-card-pad text-center"
+                data-aos="fade-up"
+                data-aos-duration="1200"
+              >
+                <h3 class="text-2xl font-bold mb-4">Service 1</h3>
+                <p>
+                  Description du service 1. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </p>
+              </div>
+              <div
+                class="ui-glass-card ui-card-pad text-center"
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="200"
+              >
+                <h3 class="text-2xl font-bold mb-4">Service 2</h3>
+                <p>
+                  Description du service 2. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </p>
+              </div>
+              <div
+                class="ui-glass-card ui-card-pad text-center"
+                data-aos="fade-up"
+                data-aos-duration="1200"
+                data-aos-delay="400"
+              >
+                <h3 class="text-2xl font-bold mb-4">Service 3</h3>
+                <p>
+                  Description du service 3. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications Section -->
+      <section id="certifications" class="px-4">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="text-4xl font-bold text-center mb-12">Certifications</h2>
+
+          <!-- GRID -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-10 justify-items-center">
+            {
+              certifications
+                .slice(0, 4)
+                .map((cert) => <CertificationCard cert={cert} />)
+            }
+          </div>
+
+          <!-- Voir plus -->
+          {
+            certifications.length > 4 && (
+              <div class="flex justify-center mt-12">
+                <Button variant="gradient" href="/certifications">
+                  Voir toutes les certifications
+                </Button>
+              </div>
+            )
+          }
+        </div>
+      </section>
+
+      <!-- Technologies Section -->
+      <section id="technos" class="px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center section-inner">
+            <h2 class="text-4xl font-bold mb-12">Technologies & Outils</h2>
+            <TechCards size="lg" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="realisations" class="px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="text-center section-inner">
+            <h2 class="text-4xl font-bold mb-12">Mes Réalisations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
+              {
+                projects.map((projet, index) => (
+                  <ProjectCard projet={projet} index={index} />
+                ))
+              }
+            </div>
+            {
+              allProjects.length > 4 && (
+                <Button variant="gradient" href="/projects">
+                  Voir tous les projets
+                </Button>
+              )
+            }
+          </div>
+        </div>
+      </section>
+
+      <Reviews />
+
+      <!-- Contact Section -->
+      <section id="contact" class="px-4">
+        <div class="max-w-6xl mx-auto">
+          <div class="section-inner text-center">
+            <h2 class="text-4xl font-bold mb-12">Contacts</h2>
+
+            <div class="flex flex-col xl:flex-row justify-center items-center gap-10 xl:gap-20">
+              <div data-aos="zoom-in-up" data-aos-duration="1200">
+                  <SocialLinks size="lg" variant="vertical"/>
+              </div>
+              <div class="ui-glass-card ui-card-pad">
+               
+              <div class="flex flex-col gap-4 ">
+                <a
+                    class="text-md md:text-2xl p-3 mx-4"
+                    href="mailto:johndoe@gmail.com?subject=Contact depuis le site&body=Bonjour%20John,"
+                    aria-label="johndoe@gmail.com"
+                    data-aos="zoom-in-up"
+                    data-aos-duration="1200"
+                  >
+                    📧: johndoe@gmail.com
+                </a>
+                <a
+                    class="text-md md:text-2xl p-3"
+                    href="tel:+33123456789"
+                    aria-label="0123456789"
+                    data-aos="zoom-in-up"
+                    data-aos-duration="1200"
+                >
+                    📱: 01 23 45 67 89
+                </a>
+                </div>
+                <!-- <hr class="hr-gradient w-3/4" /> -->
+                <!-- <div data-aos="zoom-in-up" data-aos-duration="1200">
+                  <SocialLinks size="lg" />
+                </div> -->
+                <hr class="hr-gradient" />
+              <div
+                  class="my-4 gap-4"
+                  data-aos="zoom-in-up"
+                  data-aos-duration="1200"
+                >
+                <p class="text-center my-4 mx-4">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur necessitatibus quae, atque soluta id, deleniti laboriosam repellendus quibusdam consequuntur vero eos error veritatis animi placeat autem beatae sapiente perferendis iure!
+                </p>
+              <Button
+                    variant="gradient"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://calendly.com/johndoe/premier"
+                  >
+                    Prendre rendez-vous
+              </Button>
+            </div>
+          </div>
+        <!-- </div> -->
+              <Image
+                src={setup}
+                alt="setup"
+                width={500}
+                height={300}
+                class="max-w-[90%] sm:max-w-[70%] md:max-w-[400px] w-full bordure-magique rounded-3xl h-auto"
+                loading="lazy"
+                data-aos="zoom-in-up"
+                data-aos-duration="1200"
+                data-aos-offset="200"
+              />
+            </div>
+          
+        </div>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

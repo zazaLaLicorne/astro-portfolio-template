@@ -1,0 +1,186 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Analytics from "../components/Analytics.astro";
+import "../styles/global.css";
+import "../styles/effects.css";
+import "aos/dist/aos.css";
+// import bgdark from "../assets/images/bg-licorne.webp";
+// import bglight from "../assets/images/sakura-pink.webp";
+
+const GA_ID = import.meta.env.PUBLIC_GA_ID;
+---
+
+<!doctype html>
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link
+      rel="preload"
+      href="/fonts/roboto-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+    <link rel="dns-prefetch" href="https://res.cloudinary.com" />
+    <title>John DOE Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio de développeur web spécialisé en Astro, React et Next.js. Projets concrets, performance, design et solutions sur-mesure."
+    />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://johndoe.fr/" />
+    <meta property="og:title" content="Astro — Template — Portfolio" />
+    <meta
+      property="og:description"
+      content="Site fictif, images placeholder et idendité John Doe ,template a personaliser réalisé en Astro , déployable sur Vercel"
+    />
+    <meta
+      property="og:image"
+      content="https://johndoe.fr/og-portfolio.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="fr_FR" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Astro — Template — Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Site fictif, images placeholder et idendité John Doe ,template a personaliser réalisé en Astro , deployablze sur Vercel"
+    />
+    <meta
+      name="twitter:image"
+      content="https://isabellelamarre.fr/og-portfolio.png"
+    />
+
+    <meta name="ga-id" content={GA_ID} />
+
+    <!-- Script pour éviter le flash de contenu -->
+
+    <script is:inline>
+      (function () {
+        const theme = localStorage.getItem("theme") || "dark";
+        document.documentElement.classList.toggle("dark", theme === "dark");
+      })();
+    </script>
+    <style is:inline>
+      :root {
+        --bg-url: url("/background/sincerely-media-UMyt7_RrKpY-unsplash.jpg");
+      }
+      :root.dark {
+        --bg-url: url("/background/codioful-formerly-gradienta-OzfD79w8ptA-unsplash.jpg");
+      }
+
+      @media (min-width: 768px) {
+        :root {
+          --bg-url: url("/background/sincerely-media-UMyt7_RrKpY-unsplash.jpg");
+        }
+        :root.dark {
+          --bg-url: url("/background/codioful-formerly-gradienta-OzfD79w8ptA-unsplash.jpg");
+        }
+      }
+
+      #global-bg {
+        background-image: var(--bg-url);
+        background-size: cover;
+        background-position: center;
+        position: fixed;
+        inset: 0;
+        z-index: -20;
+      }
+      .page-shell {
+        max-width: 1250px;
+        margin: 0 auto;
+        padding: 0 1.25rem;
+        width: 100%;
+      }
+      section {
+        scroll-margin-top: 3rem; /* 64px pour h-16 */
+      }
+
+      @media (min-width: 640px) {
+        .page-shell {
+          padding: 0 1.5rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .page-shell {
+          padding: 0 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body
+    class={`min-h-[100svh] flex flex-col overflow-x-hidden ${Astro.props.layout ?? ""}`}
+  >
+    <div
+      id="global-bg"
+      class="fixed inset-0
+    w-full
+    max-w-full
+    overflow-hidden
+    bg-center bg-cover bg-no-repeat
+    -z-20 transition-opacity duration-500"
+    >
+    </div>
+
+    <Header />
+    <main class="relative flex-grow pt-16 w-full">
+      <slot />
+    </main>
+    <Analytics />
+    <Footer />
+
+    <script
+      is:inline
+      define:vars={{ GA_ID }}
+      type="module"
+      src="/script/banner-cookies.js"></script>
+    <script>
+      import AOS from "aos";
+
+      // Initialisation AOS après le chargement du DOM
+      document.addEventListener("DOMContentLoaded", () => {
+        AOS.init({
+          // Paramètres globaux
+          duration: 800, // Durée de l'animation (ms)
+          easing: "ease-in-out", // Fonction d'easing
+          once: true, // Animation une seule fois puis reste visible
+          mirror: false, // Pas d'animation inverse pour ne pas cacher l'élément
+          offset: 120, // Décalage (px) avant déclenchement
+          delay: 0, // Délai (ms)
+          anchorPlacement: "top-bottom", // Position de déclenchement
+
+          // Classe à ajouter lors de l'initialisation
+          startEvent: "DOMContentLoaded",
+
+          // Gestion du throttle (performance)
+          throttleDelay: 50,
+          debounceDelay: 25,
+
+          // Désactiver pour les animations réduites
+          disableMutationObserver: false,
+          disable:
+            /bot|crawler|spider|crawling/i.test(navigator.userAgent) ||
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+        });
+
+        // Rafraîchir AOS après changement de thème
+        const themeToggle = document.getElementById("theme-toggle");
+        if (themeToggle) {
+          themeToggle.addEventListener("click", () => {
+            setTimeout(() => {
+              AOS.refresh();
+            }, 300);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

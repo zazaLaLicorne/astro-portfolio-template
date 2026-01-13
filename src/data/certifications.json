@@ -1,0 +1,110 @@
+[
+  {
+    "id": "concepteur-developpeur-d-applications-web-mobile",
+    "title": "Certification 1",
+    "subtitle": "Titre RNCP",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "high",
+    "image": "https://picsum.photos/200/100",
+    "summary": "",
+    "skills": [
+      "Conception et maquettage d’une application web & mobile",
+      "Pilotage d’un projet d’application web & mobile",
+      "Manipulation et sécurisation d’une base de données",
+      "Développement d’une application web & mobile",
+      "Mise en production d’une application web & mobile"
+    ],
+    "__temp": ""
+  },
+  {
+    "image": "https://picsum.photos/200/100",
+    "title": "Certification 2",
+    "subtitle": "Badge de complétion",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "low",
+    "summary": "Le cours « Fondamentaux de Google Cloud : Infrastructure de base » présente les concepts et la terminologie essentiels pour travailler avec Google Cloud. À travers des vidéos et des travaux pratiques, il présente et compare de nombreux services de calcul et de stockage de Google Cloud, ainsi que des outils importants de gestion des ressources et des politiques.",
+    "id": "principes-fondamentaux-de-google-cloud-infrastructure-de-base"
+  },
+  {
+    "image": "https://picsum.photos/200/100",
+    "title": "Certification 3",
+    "subtitle": "Badge de complétion",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "low",
+    "summary": "Ce cours d'initiation vous permet de vous familiariser concrètement avec les outils et services fondamentaux de Google Cloud. Des vidéos optionnelles sont disponibles pour approfondir et réviser les concepts abordés lors des travaux pratiques. Google Cloud Essentials est le cours idéal pour débuter avec Google Cloud : même sans aucune connaissance préalable du cloud, vous acquerrez une expérience pratique directement applicable à votre premier projet Google Cloud. De la rédaction de commandes Cloud Shell au déploiement de votre première machine virtuelle, en passant par l'exécution d'applications sur Kubernetes Engine ou avec l'équilibrage de charge, Google Cloud Essentials constitue une excellente introduction aux fonctionnalités de base de la plateforme.",
+    "id": "google-cloud-essentials"
+  },
+  {
+    "image": "https://picsum.photos/200/100",
+    "title": "Certification 4",
+    "subtitle": "Badge de complétion",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "low",
+    "summary": "Les organisations de toutes tailles tirent parti de la puissance et de la flexibilité du cloud pour transformer leurs modes de fonctionnement. Cependant, la gestion et l'évolution efficaces des ressources cloud peuvent s'avérer complexes. La formation « Évoluer avec Google Cloud Operations » explore les concepts fondamentaux des opérations modernes, de la fiabilité et de la résilience dans le cloud, et explique comment Google Cloud peut vous accompagner dans ces démarches. Intégrée au parcours de formation « Leader du numérique dans le cloud », cette formation vise à aider les participants à progresser dans leur rôle et à bâtir l'avenir de leur entreprise.",
+    "id": "mise-a-l-echelle-avec-google-cloud-operations"
+  },
+  {
+    "image": "https://picsum.photos/200/100",
+    "title": "Certification 5",
+    "subtitle": "Badge de complétion",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "low",
+    "summary": "À mesure que les entreprises migrent leurs données et applications vers le cloud, elles doivent relever de nouveaux défis en matière de sécurité. La formation « Confiance et sécurité avec Google Cloud » explore les fondamentaux de la sécurité du cloud, l'importance de l'approche multicouche de Google Cloud en matière de sécurité des infrastructures, et la manière dont Google gagne et conserve la confiance de ses clients dans le cloud. Intégrée au parcours de formation « Leader du numérique dans le cloud », cette formation vise à accompagner les participants dans leur évolution professionnelle et la construction de l'avenir de leur entreprise.",
+    "id": "confiance-et-securite-avec-google-cloud"
+  },
+  {
+    "title": "Certification 6",
+    "subtitle": "Badge de complétion",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "low",
+    "image": "https://picsum.photos/200/100",
+    "summary": "De nombreuses entreprises traditionnelles utilisent des systèmes et applications obsolètes qui ne répondent plus aux attentes des clients d'aujourd'hui. Les dirigeants doivent souvent choisir entre la maintenance de leurs systèmes informatiques vieillissants et l'investissement dans de nouveaux produits et services. La formation « Moderniser l'infrastructure et les applications avec Google Cloud » explore ces enjeux et propose des solutions pour les surmonter grâce au cloud. Intégrée au parcours de formation « Leader du numérique dans le cloud », cette formation vise à accompagner les participants dans leur évolution professionnelle et la construction de l'avenir de leur entreprise.",
+    "id": "modernisez-votre-infrastructure-et-vos-applications-avec-google-cloud"
+  },
+  {
+    "image": "https://picsum.photos/200/100",
+    "title": "Certification 7",
+    "subtitle": "Badge de complétion",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "low",
+    "summary": "L'intelligence artificielle (IA) et l'apprentissage automatique (AA) représentent une évolution majeure des technologies de l'information, transformant rapidement de nombreux secteurs d'activité. Le cours « Innover avec l'intelligence artificielle de Google Cloud » explore comment les organisations peuvent utiliser l'IA et l'AA pour optimiser leurs processus métier. Intégré au parcours de formation Cloud Digital Leader, ce cours vise à accompagner les participants dans leur développement professionnel et la construction de l'avenir de leur entreprise.",
+    "id": "innover-avec-l-intelligence-artificielle-de-google-cloud"
+  },
+  {
+    "image": "https://picsum.photos/200/100",
+    "title": "Certification 8",
+    "subtitle": "Badge de complétion",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "low",
+    "summary": "La technologie cloud peut apporter une valeur ajoutée considérable à une organisation. Combiner sa puissance avec celle des données permet de générer encore plus de valeur et de créer de nouvelles expériences client. Le cours « Explorer la transformation des données avec Google Cloud » présente la valeur ajoutée des données pour une organisation et les solutions que Google Cloud permet de rendre les données utiles et accessibles. Intégré au parcours de formation « Leader du numérique dans le cloud », ce cours vise à accompagner les participants dans leur évolution professionnelle et la construction de l'avenir de leur entreprise.",
+    "id": "explorer-la-transformation-des-donnees-avec-google-cloud"
+  },
+  {
+    "image": "https://picsum.photos/200/100",
+    "title": "Certification 9",
+    "subtitle": "Badge de complétion",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "low",
+    "summary": "L'enthousiasme est palpable autour du cloud et de la transformation numérique, mais de nombreuses questions restent souvent sans réponse. Par exemple : qu'est-ce que le cloud ? Que signifie la transformation numérique ? Comment le cloud peut-il aider votre organisation ? Par où commencer ? Si vous vous êtes déjà posé ces questions, vous êtes au bon endroit. Ce cours vous offre un aperçu des opportunités et des défis que les entreprises rencontrent fréquemment dans leur parcours de transformation numérique. Si vous souhaitez en savoir plus sur le cloud pour exceller dans votre rôle et contribuer à bâtir l'avenir de votre entreprise, ce cours d'introduction à la transformation numérique est fait pour vous. Ce cours fait partie du parcours de formation « Leader du cloud et du numérique ».",
+    "id": "transformation-numerique-avec-google-cloud"
+  },
+  {
+    "image": "https://picsum.photos/200/100",
+    "title": "Certification 10",
+    "subtitle": "Badge de complétion",
+    "issuer": "Certification Provider",
+    "date": "2024-01",
+    "priority": "medium",
+    "summary": "Ce cours vous aide à structurer votre préparation à l'examen Associate Cloud Engineer. Vous découvrirez les domaines Google Cloud couverts par l'examen et apprendrez à élaborer un plan d'étude pour approfondir vos connaissances.",
+    "id": "se-preparer-a-son-parcours-d-ingenieur-cloud-associe"
+  }
+]

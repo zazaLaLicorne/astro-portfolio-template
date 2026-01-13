@@ -1,0 +1,89 @@
+/* ==========================================
+   DESIGN TOKENS (Light/Dark) — template-ready
+   ========================================== */
+
+/* LIGHT (par défaut) */
+:root {
+  /* Colors */
+  --bg: #7ad0ed;
+  --bg-secondary: #3ebaf4;
+  --bg-tertiary: #77aaff;
+  ;
+
+  --text: #0d0c8f;
+  --text-muted: #413f3f;
+
+  /* Brand / Accent */
+  --accent: #2323FF;
+  --accent-rgb: 0, 0, 0;
+  --accent-2: #3366ff;
+  --neon: #2323FF;
+
+  /* Tooltip */
+  --tooltip-bg: #111827;
+  --tooltip-text: #ffffff;
+
+  /* === ESPACEMENTS === */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+
+  /* === TYPOGRAPHIE === */
+  --font-base: 1rem;
+  --font-lg: 1.25rem;
+  --font-xl: 1.5rem;
+  --font-2xl: 2rem;
+  --font-3xl: 3rem;
+
+  /* === TRANSITIONS === */
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* === OMBRES === */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+
+  /* === BORDER RADIUS === */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-full: 9999px;
+
+  /* === badges COLORS === */
+  --freelance: #A64D79;
+  --perso: #6c5ce7;
+  --stage: #00b894;
+  --formation: #ffeaa7;
+
+  --gradient-primary: linear-gradient(90deg, var(--accent-2), var(--bg), var(--accent), var(--neon));
+  --gradient-secondary: linear-gradient(90deg, #6c5ce7, #00b894, #ffeaa7, #ff7675);
+
+  --glass-bg: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-shadow: 0 8px 30px rgba(var(--accent-rgb), 0.45);
+}
+
+/* DARK (aligné Tailwind: darkMode = "class" → html.dark) */
+html.dark {
+  --bg: #000d44;
+  --bg-secondary: #0012fb;
+  --bg-tertiary: #0978f6;
+
+  --text: #a9ecff;
+  --text-muted: #413f3f;
+
+  --accent: #00e9ff;
+  --accent-rgb: 0, 233, 255;
+  --accent-2: #3366ff;
+  --neon: #2323FF;
+
+  --tooltip-bg: #f9fafb;
+  --tooltip-text: #111827;
+}
+
+
+
