@@ -46,31 +46,26 @@ function setCookie(name, value, days = 365) {
 // Initialisation
 document.addEventListener("DOMContentLoaded", () => {
   const GA_ID = getGAID();
-  if (!GA_ID) {
-    console.error("GA_ID n'est pas défini dans la balise meta.");
-    return;
-  }
+  const hasGA = Boolean(GA_ID);
 
   const banner = document.getElementById("cookie-banner");
-  // const modal = document.getElementById("cookie-modal");
-  // const analyticsCheckbox = document.getElementById("analytics");
 
   // Vérifie le consentement existant
   const consent = getCookie("cookie-consent");
   if (consent) {
     banner.classList.add("hidden");
-    // modal?.classList.add("hidden");
     const preferences = JSON.parse(consent);
-    if (preferences.analytics) {
-      loadGoogleAnalytics(GA_ID);
-    }
+   if (preferences.analytics && hasGA) {
+  loadGoogleAnalytics(GA_ID);
+}
+
   }
 
   // Tout accepter
   document.getElementById("accept-all")?.addEventListener("click", () => {
     setCookie("cookie-consent", JSON.stringify({ analytics: true }));
     banner.style.display = "none";
-    loadGoogleAnalytics(GA_ID);
+    if (hasGA) loadGoogleAnalytics(GA_ID);
   });
 
   // Tout refuser
@@ -79,36 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
     banner.style.display = "none";
   });
 
-  // Enregistrer préférences (si tu gardes la modale)
-  // document.getElementById("save-preferences")?.addEventListener("click", () => {
-  //   const preferences = { analytics: analyticsCheckbox?.checked || false };
-  //   setCookie("cookie-consent", JSON.stringify(preferences));
-  //   if (preferences.analytics) loadGoogleAnalytics(GA_ID);
-  //   banner.style.display = "none";
-  //   modal?.classList.add("hidden");
-  // });
-
-  // Fermer modale
-  // document.getElementById("close-modal")?.addEventListener("click", () => {
-  //   modal?.classList.add("hidden");
-  // });
-
-  // Fermer en cliquant sur l’overlay
-  // modal?.addEventListener("click", (e) => {
-  //   if (e.target === modal) modal.classList.add("hidden");
-  // });
-
   // Bouton "Gérer mes cookies" dans le footer
   document.getElementById("manage-cookies")?.addEventListener("click", () => {
     const consent = getCookie("cookie-consent");
     if (consent) {
       const preferences = JSON.parse(consent);
-      // if (analyticsCheckbox) analyticsCheckbox.checked = preferences.analytics || false;
+      
     }
     banner.style.display = "block";
     // modal.hidden = false;
   });
 });
-
-
-

@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; img-src 'self' data: https://res.cloudinary.com https://i.ytimg.com; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://assets.calendly.com https://www.youtube.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com; font-src 'self' data:; connect-src 'self' https://api.calendly.com https://res.cloudinary.com https://www.youtube.com; frame-src https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
+          "value": "default-src 'self'; img-src 'self' data: blob: https://res.cloudinary.com https://picsum.photos ; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://assets.calendly.com https://www.youtube.com; style-src 'self' 'unsafe-inline' https://assets.calendly.com; font-src 'self' data:; connect-src 'self' https://api.calendly.com https://res.cloudinary.com https://www.youtube.com; frame-src https://calendly.com https://www.youtube.com https://www.youtube-nocookie.com; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self';"
         },
         {
           "key": "X-Frame-Options",
