@@ -46,17 +46,17 @@ http://localhost:4321
 
 ## 🧱 Project Structure
 src/
- ├─ components/
- ├─ layouts/
- ├─ pages/
- ├─ data/
- │   ├─ projects.template.json
- │   ├─ certifications.template.json
- │   └─ reviews.template.json
- └─ styles/
-     ├─ variables.css   # design tokens (colors, shadows, radius, etc.)
-     ├─ effects.css     # animations & visual effects
-     └─ global.css      # base styles & reusable UI components
+ ├─ components/  
+ ├─ layouts/  
+ ├─ pages/  
+ ├─ data/  
+ │   ├─ projects.template.json  
+ │   ├─ certifications.template.json  
+ │   └─ reviews.template.json  
+ └─ styles/  
+     ├─ variables.css   # design tokens (colors, shadows, radius, etc.)  
+     ├─ effects.css     # animations & visual effects  
+     └─ global.css      # base styles & reusable UI components  
 
 ---
 
@@ -179,8 +179,5 @@ If you find this template useful and want to support its development,
 you can buy me a coffee ☕✨
 
 <a href="https://buymeacoffee.com/lalicornecg?utm_source=github&utm_medium=readme&utm_campaign=support" target="_blank">
-  <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-support-%23FFDD00?style=flat&logo=buymeacoffee&logoColor=black" />
-</a>
-<a href="https://buymeacoffee.com/lalicornecg?utm_source=github&utm_medium=readme&utm_campaign=support" target="_blank">
 <img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
----
+
