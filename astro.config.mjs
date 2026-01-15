@@ -29,7 +29,7 @@ export default defineConfig({
       headers: {
         "Content-Security-Policy": `
       default-src 'self';
-      img-src 'self' data: https://res.cloudinary.com https://i.ytimg.com;
+      img-src 'self' data: https://res.cloudinary.com 
       script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://assets.calendly.com https://www.youtube.com;
       style-src 'self' 'unsafe-inline' https://assets.calendly.com;
       font-src 'self' data:;
